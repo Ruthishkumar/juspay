@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import 'package:example/screens/container_payment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hypersdkflutter/hypersdkflutter.dart';
 
 import '../widgets/app_bar.dart';
 import '../widgets/bottom_button.dart';
 import './payment_page.dart';
-import './payment_page_container.dart';
 
 class CheckoutScreen extends StatefulWidget {
   final int productOneCount;

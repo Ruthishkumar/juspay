@@ -7,14 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:hypersdkflutter/hypersdkflutter.dart';
 import 'package:uuid/uuid.dart';
 
-import './checkout.dart';
-
 import '../widgets/app_bar.dart';
 import '../widgets/bottom_button.dart';
+import './checkout.dart';
 
 class HomeScreen extends StatefulWidget {
   final HyperSDK hyperSDK;
@@ -30,21 +28,21 @@ class _HomeScreenState extends State<HomeScreen> {
   var countProductTwo = 0;
 
   var customerDetails = {
-    "customerId" : "",
-    "customerPhone" : "",
+    "customerId": "",
+    "customerPhone": "",
     "customerEmail": ""
   };
 
   var merchantDetails = {
-    "clientId": "",
-    "merchantId": "",
+    "clientId": "nuego",
+    "merchantId": "nuego",
     "action": "",
     "returnUrl": "",
     "currency": "INR",
     "privateKey": "",
     "merchantKeyId": "",
-    "environment": "",
-    "service": ""
+    "environment": "production",
+    "service": "in.juspay.hyperpay"
   };
 
   @override
@@ -100,12 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => CheckoutScreen(
-                            productOneCount: countProductOne,
-                            productTwoCount: countProductTwo,
-                            hyperSDK: widget.hyperSDK,
-                            merchantDetails: merchantDetails,
-                            customerDetails: customerDetails
-                          ))))
+                          productOneCount: countProductOne,
+                          productTwoCount: countProductTwo,
+                          hyperSDK: widget.hyperSDK,
+                          merchantDetails: merchantDetails,
+                          customerDetails: customerDetails))))
         ],
       ),
     );
@@ -118,12 +115,12 @@ class _HomeScreenState extends State<HomeScreen> {
       // block:start:get-initiate-payload
       var initiatePayload = {
         "requestId": const Uuid().v4(),
-        "service": merchantDetails["service"],
+        "service": "in.juspay.hyperpay",
         "payload": {
           "action": "initiate",
-          "merchantId": merchantDetails["merchantId"],
-          "clientId": merchantDetails["clientId"],
-          "environment": merchantDetails["environment"]
+          "merchantId": "nuego",
+          "clientId": "nuego",
+          "environment": "production"
         }
       };
       // block:end:get-initiate-payload
@@ -137,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Define handler for inititate callback
   // block:start:initiate-callback-handler
-  
+
   void initiateCallbackHandler(MethodCall methodCall) {
     if (methodCall.method == "initiate_result") {
       print("Debug initiate_result " + methodCall.arguments);
